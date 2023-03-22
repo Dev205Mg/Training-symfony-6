@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=" {{ asset('node_modules/bootstrap/dist/css/bootstrap.css') }}">
+    <title>Mes todos</title>
+</head>
+<body>
+    {% for message in app.session.flashBag.get('info') %}
+        <div class="alert alert-info">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.session.flashBag.get('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.session.flashBag.get('error') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <h1>Liste des todos : </h1>
+    <ol class="list-group">
+        {% for name,content in app.session.get('todos') %}
+            <li class="list-group-item">
+                {{ name }} : {{ content }}
+            </li>
+        {% endfor %}
+    </ol>
+</body>
+</html>
